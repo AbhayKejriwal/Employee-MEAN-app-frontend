@@ -1,0 +1,43 @@
+<div class="container mx-auto mt-10">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center p-4 bg-blue-50 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-blue-700">Employee List</h1>
+        <button mat-raised-button color="accent" routerLink="/employees/add">Add employee</button>
+    </div>
+
+    <!-- Table Section -->
+    <div class="overflow-x-auto shadow-lg rounded-lg mt-6 bg-white">
+        <table class="table-auto w-full border-collapse">
+            <thead class="bg-blue-600 text-white">
+                <tr>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Name</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Email</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Department</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Post</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Salary</th>
+                    <th class="py-3 px-6 text-left border-b border-gray-200">Edit / Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(employees){
+                    <tr *ngFor="let employee of employees" class="border-b hover:bg-gray-100 transition-colors">
+                        <td class="py-3 px-6 border-t border-gray-200">{{ employee.name }}</td>
+                        <td class="py-3 px-6 border-t border-gray-200">{{ employee.email }}</td>
+                        <td class="py-3 px-6 border-t border-gray-200">{{ employee.department }}</td>
+                        <td class="py-3 px-6 border-t border-gray-200">{{ employee.post }}</td>
+                        <td class="py-3 px-6 border-t border-gray-200">{{ employee.salary }}</td>
+                        <td class="flex gap-4 p-2 border-t border-gray-200">
+                        <button mat-raised-button color="accent" [routerLink]="'/employees/'+employee._id">Edit</button>
+                        <button mat-raised-button color="warn" (click)="deleteEmployee(employee._id!)">Delete</button>
+                        </td>
+                    </tr>
+                }
+                @else {
+                    <tr class="border-b hover:bg-gray-100 transition-colors">
+                        <td class="py-3 px-6 border-t border-gray-200" colspan="6">No employees found</td>
+                    </tr>
+                }                
+            </tbody>
+        </table>
+    </div>
+</div>

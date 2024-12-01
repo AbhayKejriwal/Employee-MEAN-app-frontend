@@ -1,0 +1,44 @@
+<div class="container mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    @if(editEmployeeID){
+    <h1 class="text-3xl font-bold mb-6">Update Employee</h1>
+    } @else{
+    <h1 class="text-3xl font-bold mb-6">Add New Employee</h1>
+    }
+    <form class="grid gap-6" [formGroup]="employeeForm">
+        <mat-form-field class="w-full">
+            <mat-label>Name</mat-label>
+            <input matInput name="name" type="text" formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" type="email" formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Department</mat-label>
+            <input matInput name="department" type="text" formControlName="department" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Post</mat-label>
+            <input matInput name="post" type="text" formControlName="post" />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Salary</mat-label>
+            <input matInput name="salary" type="number" formControlName="salary" />
+        </mat-form-field>
+
+        <div class="flex justify-center gap-4">
+
+            @if(editEmployeeID){
+            <button mat-raised-button color="primary" type="button" (click)="updateEmployee()">Update</button>
+            } @else{
+            <button mat-raised-button color="primary" type="button" (click)="addEmployee()">Add</button>
+            }
+
+            <button mat-raised-button color="warn" type="button" routerLink="/employees">Cancel</button>
+        </div>
+    </form>
+</div>
